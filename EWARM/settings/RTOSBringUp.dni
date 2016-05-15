@@ -13,12 +13,33 @@ CStepIntDis=_ 0
 stlinkserialNo=751A93C7
 stlinkfoundProbes=
 [DebugChecksum]
-Checksum=-1245869234
+Checksum=-2045394409
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
 [CodeCoverage]
 Enabled=_ 0
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[SWOTraceHWSettings]
+OverrideDefaultClocks=0
+CpuClock=84000000
+ClockAutoDetect=0
+ClockWanted=2000000
+JtagSpeed=2000000
+Prescaler=42
+TimeStampPrescIndex=0
+TimeStampPrescData=0
+PcSampCYCTAP=1
+PcSampPOSTCNT=15
+PcSampIndex=0
+DataLogMode=0
+ITMportsEnable=0
+ITMportsTermIO=0
+ITMportsLogFile=0
+ITMlogFile=$PROJ_DIR$\ITM.log
 [Trace2]
 Enabled=0
 ShowSource=0
@@ -66,10 +87,6 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
-[CallStack]
-ShowArgs=0
-[Disassembly]
-MixedMode=1
 [DriverProfiling]
 Enabled=0
 Mode=3
@@ -79,24 +96,7 @@ Exclusions=
 [CallStackLog]
 Enabled=0
 [CallStackStripe]
-ShowTiming=62
-[SWOTraceHWSettings]
-OverrideDefaultClocks=0
-CpuClock=84000000
-ClockAutoDetect=0
-ClockWanted=2000000
-JtagSpeed=2000000
-Prescaler=42
-TimeStampPrescIndex=0
-TimeStampPrescData=0
-PcSampCYCTAP=1
-PcSampPOSTCNT=15
-PcSampIndex=0
-DataLogMode=0
-ITMportsEnable=0
-ITMportsTermIO=0
-ITMportsLogFile=0
-ITMlogFile=$PROJ_DIR$\ITM.log
+ShowTiming=1
 [Disassemble mode]
 mode=0
 [Breakpoints2]

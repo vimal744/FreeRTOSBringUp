@@ -32,8 +32,8 @@
   */
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
-#include "stm32f4xx_hal_usart.h"
 #include "cmsis_os.h"
+#include <string.h>
 
 /* USER CODE BEGIN Includes */
 
@@ -44,6 +44,8 @@
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
+USART_HandleTypeDef husart2;
+
 osThreadId defaultTaskHandle;
 
 /* USER CODE BEGIN PV */
@@ -54,6 +56,7 @@ osThreadId defaultTaskHandle;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_USART2_Init(void);
 void StartDefaultTask(void const * argument);
 static void gpio_on(void);
 static void gpio_off(void);
@@ -84,6 +87,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_USART2_Init();
 
   /* USER CODE BEGIN 2 */
 
@@ -172,14 +176,29 @@ void SystemClock_Config(void)
   HAL_NVIC_SetPriority(SysTick_IRQn, 15, 0);
 }
 
+/* USART2 init function */
+void MX_USART2_Init(void)
+{
+
+  husart2.Instance = USART2;
+  husart2.Init.BaudRate = 115200;
+  husart2.Init.WordLength = USART_WORDLENGTH_8B;
+  husart2.Init.StopBits = USART_STOPBITS_1;
+  husart2.Init.Parity = USART_PARITY_NONE;
+  husart2.Init.Mode = USART_MODE_TX_RX;
+  husart2.Init.CLKPolarity = USART_POLARITY_LOW;
+  husart2.Init.CLKPhase = USART_PHASE_1EDGE;
+  husart2.Init.CLKLastBit = USART_LASTBIT_DISABLE;
+  HAL_USART_Init(&husart2);
+
+}
+
 /** Configure pins as 
         * Analog 
         * Input 
         * Output
         * EVENT_OUT
         * EXTI
-     PA2   ------> USART2_TX
-     PA3   ------> USART2_RX
 */
 void MX_GPIO_Init(void)
 {
@@ -194,17 +213,9 @@ void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+  GPIO_InitStruct.Mode = GPIO_MODE_EVT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : USART_TX_Pin USART_RX_Pin */
-  GPIO_InitStruct.Pin = USART_TX_Pin|USART_RX_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LD2_Pin */
   GPIO_InitStruct.Pin = LD2_Pin;
@@ -225,14 +236,18 @@ void MX_GPIO_Init(void)
 /* StartDefaultTask function */
 void StartDefaultTask(void const * argument)
 {
+  const char StringOn[] = "Led ON\r\n";
+  const char StringOff[] = "Led OFF\r\n";
 
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
   for(;;)
   {
     gpio_on();
+    HAL_USART_Transmit( &husart2, (uint8_t*)StringOn, strlen( StringOn ), 1000 );
     osDelay(1000);
     gpio_off();
+    HAL_USART_Transmit( &husart2, (uint8_t*)StringOff, strlen( StringOff ), 1000 );
     osDelay(1000);
 
   }

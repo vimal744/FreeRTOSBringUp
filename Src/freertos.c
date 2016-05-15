@@ -34,8 +34,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "FreeRTOS.h"
 #include "task.h"
-#include "cmsis_os.h"
-#include <stdio.h>
 
 /* USER CODE BEGIN Includes */     
 
