@@ -1059,10 +1059,19 @@
     <group>
       <name>User</name>
       <file>
-        <name>$PROJ_DIR$\..\Src\freertos.c</name>
+        <name>$PROJ_DIR$\..\Src\main.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\..\Src\main.c</name>
+        <name>$PROJ_DIR$\..\Src\SensorFusionInterface.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Src\SensorFusionMain.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Src\SensorReaderInterface.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Src\SensorReaderMain.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$\..\Src\stm32f4xx_hal_msp.c</name>
@@ -1126,6 +1135,9 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_usart.c</name>
       </file>
     </group>
   </group>

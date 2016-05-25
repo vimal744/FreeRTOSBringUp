@@ -2,7 +2,7 @@
 
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armstlink2.dll" 
 
-"C:\Users\mehta\Desktop\STM32F401\E110\RTOSBringUp\RTOSBringUp\EWARM\RTOSBringUp\Exe\RTOSBringUp.out" 
+"C:\Users\mehta\Documents\GitHub\FreeRTOSBringUp\EWARM\RTOSBringUp\Exe\RTOSBringUp.out" 
 
 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armbat.dll" 
 

@@ -13,7 +13,7 @@ CStepIntDis=_ 0
 stlinkserialNo=751A93C7
 stlinkfoundProbes=
 [DebugChecksum]
-Checksum=-2045394409
+Checksum=-189705141
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -100,7 +100,9 @@ ShowTiming=1
 [Disassemble mode]
 mode=0
 [Breakpoints2]
-Count=0
+Bp0=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\SensorReaderMain.c}.47.9" 0 0 1 "" 0 "" 0
+Bp1=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\SensorFusionMain.c}.45.9" 0 0 1 "" 0 "" 0
+Count=2
 [Aliases]
 Count=0
 SuppressDialog=0

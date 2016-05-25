@@ -34,6 +34,7 @@
 #include "stm32f4xx_hal.h"
 #include "cmsis_os.h"
 #include <string.h>
+#include "SensorReaderInterface.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -58,8 +59,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_Init(void);
 void StartDefaultTask(void const * argument);
-static void gpio_on(void);
-static void gpio_off(void);
+
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -73,67 +73,47 @@ static void gpio_off(void);
 int main(void)
 {
 
-  /* USER CODE BEGIN 1 */
+    /* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
+    /* USER CODE END 1 */
 
-  /* MCU Configuration----------------------------------------------------------*/
+    /* MCU Configuration----------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+    HAL_Init();
 
-  /* Configure the system clock */
-  SystemClock_Config();
+    /* Configure the system clock */
+    SystemClock_Config();
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_USART2_Init();
+    /* Initialize all configured peripherals */
+    MX_GPIO_Init();
+    MX_USART2_Init();
 
-  /* USER CODE BEGIN 2 */
+    SensorReaderPowerUp();
+    SensorFusionPowerUp();
 
-  /* USER CODE END 2 */
+    SensorReaderInit();
+    SensorFusionInit();
 
-  /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
 
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
-  /* add semaphores, ... */
-  /* USER CODE END RTOS_SEMAPHORES */
 
-  /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
+    /* Start scheduler */
+    osKernelStart();
 
-  /* Create the thread(s) */
-  /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
-  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+    /* We should never get here as control is now taken by the scheduler */
 
-  /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
-  /* USER CODE END RTOS_THREADS */
+    /* Infinite loop */
+    /* USER CODE BEGIN WHILE */
+    while (1)
+    {
+    /* USER CODE END WHILE */
 
-  /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
- 
+    /* USER CODE BEGIN 3 */
+    }
+    /* USER CODE END 3 */
 
-  /* Start scheduler */
-  osKernelStart();
-  
-  /* We should never get here as control is now taken by the scheduler */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-  /* USER CODE END WHILE */
-
-  /* USER CODE BEGIN 3 */
-
-  }
-  /* USER CODE END 3 */
+    SensorFusionPowerDown();
+    SensorReaderPowerDown();
 
 }
 
@@ -229,41 +209,16 @@ void MX_GPIO_Init(void)
 
 }
 
-/* USER CODE BEGIN 4 */
-
-/* USER CODE END 4 */
-
 /* StartDefaultTask function */
 void StartDefaultTask(void const * argument)
 {
-  const char StringOn[] = "Led ON\r\n";
-  const char StringOff[] = "Led OFF\r\n";
-
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
   for(;;)
   {
-    gpio_on();
-    HAL_USART_Transmit( &husart2, (uint8_t*)StringOn, strlen( StringOn ), 1000 );
-    osDelay(1000);
-    gpio_off();
-    HAL_USART_Transmit( &husart2, (uint8_t*)StringOff, strlen( StringOff ), 1000 );
-    osDelay(1000);
 
   }
   /* USER CODE END 5 */ 
-}
-
-static void gpio_on(void)
-{
-  /* LED is on when high */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-}
-
-static void gpio_off(void)
-{
-  /* LED is off when low */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
 }
 
 #ifdef USE_FULL_ASSERT
