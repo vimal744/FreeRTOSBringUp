@@ -1,4 +1,7 @@
 #include "SensorReaderInterface.h"
+#include "SensorFusionInterface.h"
+#include "GyroTypes.h"
+
 #include "FreeRTOS.h"
 #include "task.h"
 
@@ -18,13 +21,13 @@ static void MainSensorReader
 void SensorReaderPowerUp
     ( void )
 {
-
+    xTaskCreate( MainSensorReader, c_ThreadName, SENSOR_MAIN_STACK_SIZE, NULL, tskIDLE_PRIORITY, &s_SensorReader_Main_Handle );
 }
 
 void SensorReaderInit
     ( void )
 {
-    xTaskCreate( MainSensorReader, c_ThreadName, SENSOR_MAIN_STACK_SIZE, NULL, tskIDLE_PRIORITY, &s_SensorReader_Main_Handle );
+    
 }
 
 void SensorReaderPowerDown
@@ -42,8 +45,12 @@ static void MainSensorReader
     void* a_Ptr
     )
 {
+    GyroRawDataType rawData =0;
+
     for(;;)
     {
+        rawData += 1;
+        SensorFusionAddGyroData( &rawData );
         osDelay(1000);
     }
 }

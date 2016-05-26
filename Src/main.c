@@ -89,11 +89,11 @@ int main(void)
     MX_GPIO_Init();
     MX_USART2_Init();
 
-    SensorReaderPowerUp();
     SensorFusionPowerUp();
+    SensorReaderPowerUp();
 
-    SensorReaderInit();
     SensorFusionInit();
+    SensorReaderInit();
 
 
 
