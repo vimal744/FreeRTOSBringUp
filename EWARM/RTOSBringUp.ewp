@@ -995,6 +995,12 @@
         <name>$PROJ_DIR$\..\Src\PrintUtility.h</name>
       </file>
       <file>
+        <name>$PROJ_DIR$\..\Src\SensorApplicationInterface.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Src\SensorApplicationMain.c</name>
+      </file>
+      <file>
         <name>$PROJ_DIR$\..\Src\SensorFusionInterface.h</name>
       </file>
       <file>

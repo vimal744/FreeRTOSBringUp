@@ -36,6 +36,9 @@
 #include <string.h>
 #include "UartInterface.h"
 #include "SensorReaderInterface.h"
+#include "SensorFusionInterface.h"
+#include "SensorApplicationInterface.h"
+
 
 /* USER CODE BEGIN Includes */
 
@@ -90,9 +93,11 @@ int main(void)
 
     SensorFusionPowerUp();
     SensorReaderPowerUp();
+    SensorApplicationPowerUp();
 
     SensorFusionInit();
     SensorReaderInit();
+    SensorApplicationInit();
 
     /* Start scheduler */
     osKernelStart();
@@ -109,6 +114,7 @@ int main(void)
     }
     /* USER CODE END 3 */
 
+    SensorApplicationPowerDown();
     SensorFusionPowerDown();
     SensorReaderPowerDown();
 

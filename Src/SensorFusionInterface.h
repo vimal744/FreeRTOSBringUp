@@ -7,6 +7,15 @@
 #include "AccelTypes.h"
 #include "CompassTypes.h"
 
+typedef struct
+    {
+    uint32_t TimeStamp;
+    float    MeasurementX;
+    float    MeasurementY;
+    float    MeasurementZ;
+    float    MeasurementW;
+    } SensorQuaternionDataType;
+
 void SensorFusionPowerUp
     ( void );
 
@@ -15,6 +24,11 @@ void SensorFusionInit
 
 void SensorFusionPowerDown
     ( void );
+
+void SensorFusionGetQuaternionData
+    (
+    const SensorQuaternionDataType* a_PtrData
+    );
 
 boolean SensorFusionAddGyroData
     (
