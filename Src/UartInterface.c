@@ -30,8 +30,6 @@ void UartPowerInit
     HAL_USART_Init(&husart2);
 }
 
-
-
 void UartWriteData
     (
     const uint8_t*  a_PtrData,

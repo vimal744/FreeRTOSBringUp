@@ -6,10 +6,9 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-#define SENSOR_MAIN_STACK_SIZE      ( 128 )
+#define SENSOR_MAIN_STACK_SIZE      ( 256 )
 
 static const char* c_ThreadName = "SensorReader_Main";
-
 
 static TaskHandle_t s_SensorReader_Main_Handle;
 
@@ -51,8 +50,8 @@ static void MainSensorReader
     for(;;)
     {
         rawData += 1;
-        PrintString("Sensor Reader: Send Gyro Data\r\n");
+        Printf("Sensor Reader: Send Gyro Data %d\r\n", rawData );
         SensorFusionAddGyroData( &rawData );
-        osDelay(10);
+        osDelay(1000);
     }
 }

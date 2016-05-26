@@ -9,13 +9,17 @@
       <file>$PROJ_DIR$\..\Src\GeneralTypes.h</file>
       <file>$PROJ_DIR$\..\Src\main.c</file>
       <file>$PROJ_DIR$\..\Src\GyroTypes.h</file>
-      <file>$PROJ_DIR$\..\Src\SensorFusionMain.c</file>
+      <file>$PROJ_DIR$\..\Src\PrintUtility.h</file>
+      <file>$PROJ_DIR$\..\Src\PrintUtility.c</file>
       <file>$PROJ_DIR$\..\Src\SensorFusionInterface.h</file>
+      <file>$PROJ_DIR$\..\Src\SensorFusionMain.c</file>
       <file>$PROJ_DIR$\..\Src\SensorReaderInterface.h</file>
-      <file>$PROJ_DIR$\..\Src\SensorReaderMain.c</file>
       <file>$PROJ_DIR$\..\Src\stm32f4xx_hal_msp.c</file>
-      <file>$PROJ_DIR$\..\Src\stm32f4xx_it.c</file>
+      <file>$PROJ_DIR$\..\Src\SensorReaderMain.c</file>
       <file>$PROJ_DIR$\..\Src\stm32f4xx_hal_timebase_TIM.c</file>
+      <file>$PROJ_DIR$\..\Src\stm32f4xx_it.c</file>
+      <file>$PROJ_DIR$\..\Src\UartInterface.c</file>
+      <file>$PROJ_DIR$\..\Src\UartInterface.h</file>
       <file>$PROJ_DIR$\..\Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c</file>
       <file>$PROJ_DIR$\..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c</file>
       <file>$PROJ_DIR$\..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c</file>
@@ -32,10 +36,6 @@
       <file>$PROJ_DIR$\..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c</file>
       <file>$PROJ_DIR$\..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_usart.c</file>
       <file>$PROJ_DIR$\..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c</file>
-      <file>$PROJ_DIR$\..\Src\PrintUtility.c</file>
-      <file>$PROJ_DIR$\..\Src\UartInterface.h</file>
-      <file>$PROJ_DIR$\..\Src\PrintUtility.h</file>
-      <file>$PROJ_DIR$\..\Src\UartInterface.c</file>
     </outputs>
   </configuration>
 </project>

@@ -86,7 +86,7 @@ static void ProcessDataQueue
 
     if( pdTRUE == xQueueReceive( s_DataQueue, &rcvdGyroData, portMAX_DELAY ) )
     {
-        PrintString("Sensor Fusion: Received Gyro Data\r\n");
+        Printf("Sensor Fusion: Received Gyro Data %d\r\n", rcvdGyroData);
         success = TRUE;
     }
     else

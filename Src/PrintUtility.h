@@ -9,4 +9,11 @@ void PrintString
     const char* const   a_PtrString
     );
 
+void Printf
+    (
+    char *format,
+    ...
+    );
+
+
 #endif // PRINT_UTILITY_H
