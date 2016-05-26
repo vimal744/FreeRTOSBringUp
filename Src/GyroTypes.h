@@ -4,6 +4,11 @@
 #include "cmsis_os.h"
 #include "GeneralTypes.h"
 
-typedef uint16_t GyroRawDataType;
+#define GYRO_AXIS_CNT ( 3 )
+
+typedef struct
+    {
+    float       meas[ GYRO_AXIS_CNT ];
+    } GyroDataType;
 
 #endif // GYRO_TYPES_H

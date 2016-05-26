@@ -2,8 +2,10 @@
 #define SENSOR_FUSION_PUBLIC_INTERFACE_H
 
 #include "GeneralTypes.h"
+
 #include "GyroTypes.h"
-#include "cmsis_os.h"
+#include "AccelTypes.h"
+#include "CompassTypes.h"
 
 void SensorFusionPowerUp
     ( void );
@@ -16,7 +18,17 @@ void SensorFusionPowerDown
 
 boolean SensorFusionAddGyroData
     (
-    const GyroRawDataType* const a_PtrGyroData
+    const GyroDataType* const a_PtrGyroData
+    );
+
+boolean SensorFusionAddAccelData
+    (
+    const AccelDataType* const a_PtrAccelData
+    );
+
+boolean SensorFusionAddCompassData
+    (
+    const CompassDataType* const a_PtrCmpsData
     );
 
 #endif // SENSOR_FUSION_PUBLIC_INTERFACE_H

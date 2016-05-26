@@ -1,6 +1,11 @@
 #include "SensorReaderInterface.h"
 #include "SensorFusionInterface.h"
+
 #include "GyroTypes.h"
+#include "AccelTypes.h"
+#include "CompassTypes.h"
+
+
 #include "PrintUtility.h"
 
 #include "FreeRTOS.h"
@@ -27,7 +32,7 @@ void SensorReaderPowerUp
 void SensorReaderInit
     ( void )
 {
-    
+
 }
 
 void SensorReaderPowerDown
@@ -45,13 +50,45 @@ static void MainSensorReader
     void* a_Ptr
     )
 {
-    GyroRawDataType rawData =0;
+    GyroDataType    gyroData;
+    AccelDataType   accelData;
+    CompassDataType cmpsData;
+
+
+    gyroData.meas[0] = 0.0f;
+    gyroData.meas[1] = 0.0f;
+    gyroData.meas[2] = 0.0f;
+
+    accelData.meas[0] = 0.0f;
+    accelData.meas[1] = 0.0f;
+    accelData.meas[2] = 0.0f;
+
+    cmpsData.meas[0] = 0.0f;
+    cmpsData.meas[1] = 0.0f;
+    cmpsData.meas[2] = 0.0f;
 
     for(;;)
     {
-        rawData += 1;
-        Printf("Sensor Reader: Send Gyro Data %d\r\n", rawData );
-        SensorFusionAddGyroData( &rawData );
+        gyroData.meas[0] += 1.0f;
+        gyroData.meas[1] += 10.0f;
+        gyroData.meas[2] += -10.0f;
+        Printf("SR: Tx Gyro x=%f, y=%f, z=%f\r\n", gyroData.meas[0], gyroData.meas[1], gyroData.meas[2] );
+        SensorFusionAddGyroData( &gyroData );
+        osDelay(10);
+
+        accelData.meas[0] += 2.0f;
+        accelData.meas[1] += 20.0f;
+        accelData.meas[2] += -20.0f;
+        Printf("SR: Tx Accl x=%f, y=%f, z=%f\r\n", accelData.meas[0], accelData.meas[1], accelData.meas[2] );
+        SensorFusionAddAccelData( &accelData );
+        osDelay(10);
+
+        cmpsData.meas[0] += 3.0f;
+        cmpsData.meas[1] += 30.0f;
+        cmpsData.meas[2] += -30.0f;
+        Printf("SR: Tx Cmps x=%f, y=%f, z=%f\r\n", cmpsData.meas[0], cmpsData.meas[1], cmpsData.meas[2] );
+        SensorFusionAddCompassData( &cmpsData );
+
         osDelay(1000);
     }
 }
