@@ -2,6 +2,7 @@
 #include "GyroTypes.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "PrintUtility.h"
 #include <queue.h>
 
 #define SENSOR_FUSION_MAIN_STACK_SIZE      ( 256 )
@@ -85,6 +86,7 @@ static void ProcessDataQueue
 
     if( pdTRUE == xQueueReceive( s_DataQueue, &rcvdGyroData, portMAX_DELAY ) )
     {
+        PrintString("Sensor Fusion: Received Gyro Data\r\n");
         success = TRUE;
     }
     else

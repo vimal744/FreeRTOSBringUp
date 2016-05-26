@@ -34,6 +34,7 @@
 #include "stm32f4xx_hal.h"
 #include "cmsis_os.h"
 #include <string.h>
+#include "UartInterface.h"
 #include "SensorReaderInterface.h"
 
 /* USER CODE BEGIN Includes */
@@ -45,9 +46,6 @@
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-USART_HandleTypeDef husart2;
-
-osThreadId defaultTaskHandle;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -57,7 +55,6 @@ osThreadId defaultTaskHandle;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_USART2_Init(void);
 void StartDefaultTask(void const * argument);
 
 
@@ -73,6 +70,8 @@ void StartDefaultTask(void const * argument);
 int main(void)
 {
 
+    UartPowerUp();
+
     /* USER CODE BEGIN 1 */
 
     /* USER CODE END 1 */
@@ -87,15 +86,13 @@ int main(void)
 
     /* Initialize all configured peripherals */
     MX_GPIO_Init();
-    MX_USART2_Init();
+    UartPowerInit();
 
     SensorFusionPowerUp();
     SensorReaderPowerUp();
 
     SensorFusionInit();
     SensorReaderInit();
-
-
 
     /* Start scheduler */
     osKernelStart();
@@ -156,26 +153,9 @@ void SystemClock_Config(void)
   HAL_NVIC_SetPriority(SysTick_IRQn, 15, 0);
 }
 
-/* USART2 init function */
-void MX_USART2_Init(void)
-{
-
-  husart2.Instance = USART2;
-  husart2.Init.BaudRate = 115200;
-  husart2.Init.WordLength = USART_WORDLENGTH_8B;
-  husart2.Init.StopBits = USART_STOPBITS_1;
-  husart2.Init.Parity = USART_PARITY_NONE;
-  husart2.Init.Mode = USART_MODE_TX_RX;
-  husart2.Init.CLKPolarity = USART_POLARITY_LOW;
-  husart2.Init.CLKPhase = USART_PHASE_1EDGE;
-  husart2.Init.CLKLastBit = USART_LASTBIT_DISABLE;
-  HAL_USART_Init(&husart2);
-
-}
-
-/** Configure pins as 
-        * Analog 
-        * Input 
+/** Configure pins as
+        * Analog
+        * Input
         * Output
         * EVENT_OUT
         * EXTI
@@ -218,7 +198,7 @@ void StartDefaultTask(void const * argument)
   {
 
   }
-  /* USER CODE END 5 */ 
+  /* USER CODE END 5 */
 }
 
 #ifdef USE_FULL_ASSERT
@@ -243,10 +223,10 @@ void assert_failed(uint8_t* file, uint32_t line)
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-*/ 
+*/
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -1068,6 +1068,12 @@
         <name>$PROJ_DIR$\..\Src\main.c</name>
       </file>
       <file>
+        <name>$PROJ_DIR$\..\Src\PrintUtility.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Src\PrintUtility.h</name>
+      </file>
+      <file>
         <name>$PROJ_DIR$\..\Src\SensorFusionInterface.h</name>
       </file>
       <file>
@@ -1087,6 +1093,12 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\Src\stm32f4xx_it.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Src\UartInterface.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Src\UartInterface.h</name>
       </file>
     </group>
   </group>

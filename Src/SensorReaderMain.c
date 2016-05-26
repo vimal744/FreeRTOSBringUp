@@ -1,6 +1,7 @@
 #include "SensorReaderInterface.h"
 #include "SensorFusionInterface.h"
 #include "GyroTypes.h"
+#include "PrintUtility.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -50,7 +51,8 @@ static void MainSensorReader
     for(;;)
     {
         rawData += 1;
+        PrintString("Sensor Reader: Send Gyro Data\r\n");
         SensorFusionAddGyroData( &rawData );
-        osDelay(1000);
+        osDelay(10);
     }
 }
