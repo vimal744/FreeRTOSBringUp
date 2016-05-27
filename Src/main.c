@@ -73,6 +73,7 @@ void StartDefaultTask(void const * argument);
 int main(void)
 {
 
+    // Power up the UART
     UartPowerUp();
 
     /* USER CODE BEGIN 1 */
@@ -91,10 +92,12 @@ int main(void)
     MX_GPIO_Init();
     UartPowerInit();
 
+    // Powerup the various modules
     SensorFusionPowerUp();
     SensorReaderPowerUp();
     SensorApplicationPowerUp();
 
+    // Init the various modules
     SensorFusionInit();
     SensorReaderInit();
     SensorApplicationInit();
@@ -114,6 +117,7 @@ int main(void)
     }
     /* USER CODE END 3 */
 
+    // Power down the various modules
     SensorApplicationPowerDown();
     SensorFusionPowerDown();
     SensorReaderPowerDown();

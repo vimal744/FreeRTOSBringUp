@@ -1,11 +1,33 @@
+/**
+  ******************************************************************************
+  * File Name          : SensorFusionInterface.h
+  * Description        : Header File for the Sensor Fusion Interface
+  ******************************************************************************
+  *
+  * COPYRIGHT(c) 2016 Vimal Mehta
+  *
+  ******************************************************************************
+  */
+
 #ifndef SENSOR_FUSION_PUBLIC_INTERFACE_H
 #define SENSOR_FUSION_PUBLIC_INTERFACE_H
+
+/* Public Includes -----------------------------------------------------------*/
 
 #include "GeneralTypes.h"
 
 #include "GyroTypes.h"
 #include "AccelTypes.h"
 #include "CompassTypes.h"
+
+/* Private Includes ----------------------------------------------------------*/
+
+
+/* Literal Constants ---------------------------------------------------------*/
+
+/* Types ---------------------------------------------------------------------*/
+
+/* Quaternion Data Tyoe*/
 
 typedef struct
     {
@@ -15,6 +37,8 @@ typedef struct
     float    MeasurementZ;
     float    MeasurementW;
     } SensorQuaternionDataType;
+
+/* Procedures ----------------------------------------------------------------*/
 
 void SensorFusionPowerUp
     ( void );

@@ -1,9 +1,37 @@
+/**
+  ******************************************************************************
+  * File Name          : UartInterface.c
+  * Description        : Implementation for the Uart Interface
+  ******************************************************************************
+  *
+  * COPYRIGHT(c) 2016 Vimal Mehta
+  *
+  ******************************************************************************
+  */
+
+/* Public Includes -----------------------------------------------------------*/
+
 #include "UartInterface.h"
 #include "GeneralTypes.h"
-
 #include "stm32f4xx_hal.h"
 
+/* Private Includes ----------------------------------------------------------*/
+
+/* Literal Constants ---------------------------------------------------------*/
+
+/* Memory Constants ----------------------------------------------------------*/
+
+/* Types ---------------------------------------------------------------------*/
+
+/* Global Variables ----------------------------------------------------------*/
+
 static USART_HandleTypeDef husart2;
+
+/* Procedures ----------------------------------------------------------------*/
+
+/**
+* @brief Power up the uart interface
+*/
 
 void UartPowerUp
     (
@@ -13,13 +41,17 @@ void UartPowerUp
 
 }
 
+/**
+* @brief Init the UART
+*/
+
 void UartPowerInit
     (
     void
     )
 {
     husart2.Instance            = USART2;
-    husart2.Init.BaudRate       = 115200;
+    husart2.Init.BaudRate       = 9600;
     husart2.Init.WordLength     = USART_WORDLENGTH_8B;
     husart2.Init.StopBits       = USART_STOPBITS_1;
     husart2.Init.Parity         = USART_PARITY_NONE;
@@ -29,6 +61,10 @@ void UartPowerInit
     husart2.Init.CLKLastBit     = USART_LASTBIT_DISABLE;
     HAL_USART_Init(&husart2);
 }
+
+/**
+* @brief Write data to the UART
+*/
 
 void UartWriteData
     (

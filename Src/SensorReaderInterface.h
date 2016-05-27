@@ -1,7 +1,29 @@
+/**
+  ******************************************************************************
+  * File Name          : SensorReaderInterface.h
+  * Description        : Header File for the Sensor Reader Interface
+  ******************************************************************************
+  *
+  * COPYRIGHT(c) 2016 Vimal Mehta
+  *
+  ******************************************************************************
+  */
+
 #ifndef SENSOR_READER_PUBLIC_INTERFACE_H
 #define SENSOR_READER_PUBLIC_INTERFACE_H
 
-#include "cmsis_os.h"
+/* Public Includes -----------------------------------------------------------*/
+
+#include "GeneralTypes.h"
+
+/* Private Includes ----------------------------------------------------------*/
+
+
+/* Literal Constants ---------------------------------------------------------*/
+
+/* Types ---------------------------------------------------------------------*/
+
+/* Procedures ----------------------------------------------------------------*/
 
 void SensorReaderPowerUp
     ( void );
